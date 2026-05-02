@@ -63,9 +63,6 @@ app.get("/schedule", async (req, res) => {
         },
       },
     );
-
-    console.log("Depots:", depotResponse.data);
-    console.log("Vehicles:", vehicleResponse.data);
     const depots = depotResponse.data.depots;
 const vehicles = vehicleResponse.data.vehicles;
 

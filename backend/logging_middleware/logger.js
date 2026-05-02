@@ -83,10 +83,8 @@ async function Log(stack, level, pkg, message, token) {
       }
     );
 
-    console.log("✅ Log sent:", res.data); // TEMP DEBUG
-
   } catch (err) {
-    console.log("❌ Log failed:", err.response?.data || err.message); // TEMP DEBUG
+    // silently fail
   }
 }
 
