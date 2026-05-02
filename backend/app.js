@@ -9,7 +9,7 @@ app.use(express.json());
 
 const PORT = 3000;
 
-// 🔥 GLOBAL LOGGING MIDDLEWARE
+//  GLOBAL LOGGING MIDDLEWARE
 app.use(async (req, res, next) => {
   await Log(
     "backend",
@@ -21,7 +21,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// ✅ TEST ROUTE
+//  TEST ROUTE
 app.get("/", async (req, res) => {
   await Log(
     "backend",
@@ -31,12 +31,11 @@ app.get("/", async (req, res) => {
     process.env.ACCESS_TOKEN,
   );
 
-  res.send("Server is running 🚀");
+  res.send("Server is running ");
 });
 
 app.get("/schedule", async (req, res) => {
   try {
-    console.log("🔥 Schedule route hit");
     await Log(
       "backend",
       "info",
@@ -64,11 +63,11 @@ app.get("/schedule", async (req, res) => {
       },
     );
     const depots = depotResponse.data.depots;
-const vehicles = vehicleResponse.data.vehicles;
+    const vehicles = vehicleResponse.data.vehicles;
 
-const maxHours = depots?.[0]?.MechanicHours || 50;
+    const maxHours = depots?.[0]?.MechanicHours || 50;
 
-const scheduleResult = buildSchedule(vehicles, maxHours);
+    const scheduleResult = buildSchedule(vehicles, maxHours);
 
 
     await Log(
@@ -84,8 +83,6 @@ const scheduleResult = buildSchedule(vehicles, maxHours);
       data: scheduleResult,
     });
   } catch (error) {
-    console.log("❌ FULL ERROR:", error); // add this
-    console.log("❌ MESSAGE:", error.message);
     await Log(
       "backend",
       "error",
@@ -97,7 +94,6 @@ const scheduleResult = buildSchedule(vehicles, maxHours);
   }
 });
 
-// ❌ ERROR SIMULATION ROUTE (important for testing)
 app.get("/error", async (req, res) => {
   await Log(
     "backend",
